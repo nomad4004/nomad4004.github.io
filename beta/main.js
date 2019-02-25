@@ -4,7 +4,7 @@ Hello, and welcome to the joyous mess that is main.js. Code contained herein is 
 */
 
 function load(){
-    var savegame = JSON.parse(localStorage.getItem("save"));
+    var savegame = JSON.parse(localStorage.getItem("saveBeta"));
     if (typeof savegame.Cows !== "undefined") Cows = savegame.Cows, document.getElementById('Cows').innerHTML = Cows;
     if (typeof savegame.cursors !== "undefined") cursors = savegame.cursors, document.getElementById('cursors').innerHTML = cursors;
     if (typeof savegame.farms !== "undefined") farms = savegame.farms, document.getElementById('farms').innerHTML = farms;
@@ -79,7 +79,7 @@ function buyportal(){
 
 
 function save(){
-    var save = {
+    var saveBeta = {
         Cows: Cows,
         cursors: cursors,
         farms: farms,
