@@ -3,6 +3,15 @@ All this code is copyright Nomad4002, 2019
 Hello, and welcome to the joyous mess that is main.js. Code contained herein is not guaranteed to be good, consistent, or sane. Have a nice trip.
 */
 
+function load(){
+    var savegame = JSON.parse(localStorage.getItem("save"));
+    if (typeof savegame.cookies !== "undefined") cookies = savegame.cookies, document.getElementById('cookies').innerHTML = cookies;
+    if (typeof savegame.cursors !== "undefined") cursors = savegame.cursors, document.getElementById('cursors').innerHTML = cursors;
+    if (typeof savegame.farms !== "undefined") farms = savegame.farms, document.getElementById('farms').innerHTML = farms;
+    if (typeof savegame.mines !== "undefined") mines = savegame.mines, document.getElementById('mines').innerHTML = mines;
+    if (typeof savegame.portal !== "undefined") portal = savegame.portal, document.getElementById('portals').innerHTML = portal;
+}
+
 var cookies = 0;
 
 function cookieClick(number){
@@ -66,13 +75,26 @@ function buyportal(){
     document.getElementById('portalCost').innerHTML = nextCost;  //updates the cursor cost for the user
 };
 
+function save(){
+    var save = {
+        cookies: cookies,
+        cursors: cursors,
+        farms: farms,
+        mines: mines,
+        portal: portal
+    }
+    localStorage.setItem("save",JSON.stringify(save));
+}
+
 window.setInterval(function(){
 	
     cookieClick(cursors);
     cookieClick(farms);
     cookieClick(mines);
     cookieClick(portal);
-}, 1000);
+
+}, 4000);
+
 
 
 
