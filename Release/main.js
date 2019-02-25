@@ -93,7 +93,7 @@ window.setInterval(function(){
     cookieClick(mines);
     cookieClick(portal);
 
-}, 4000);
+}, 1000);
 
 
 
