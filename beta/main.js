@@ -79,14 +79,14 @@ function buyportal(){
 
 
 function save(){
-    var saveBeta = {
+    var save = {
         Cows: Cows,
         cursors: cursors,
         farms: farms,
         mines: mines,
         portal: portal
     }
-    localStorage.setItem("save",JSON.stringify(save));
+    localStorage.setItem("saveBeta",JSON.stringify(save));
 }
 
 
