@@ -10,6 +10,7 @@ function load(){
     if (typeof savegame.farms !== "undefined") farms = savegame.farms, document.getElementById('farms').innerHTML = farms;
     if (typeof savegame.mines !== "undefined") mines = savegame.mines, document.getElementById('mines').innerHTML = mines;
     if (typeof savegame.portal !== "undefined") portal = savegame.portal, document.getElementById('portals').innerHTML = portal;
+    if (typeof savegame.Factory !== "undefined") Factory = savegame.Factory, document.getElementById('Factory').innerHTML = Factory;
 }
 
 var Cows = 0;
@@ -64,18 +65,31 @@ function buymine(){
 var portal = 0;
 
 function buyportal(){
-    var portalCost = Math.floor(250 * Math.pow(1.1,portal));     //works out the cost of this cursor
+    var portalCost = Math.floor(500 * Math.pow(1.1,portal));     //works out the cost of this cursor
     if(Cows >= portalCost){                                   //checks that the player can afford the cursor
         portal = portal + 1;                                   //increases number of farms
     	Cows = Cows - portalCost;                          //removes the cookies spent
         document.getElementById('portals').innerHTML = portal;  //updates the number of cursors for the user
         document.getElementById('Cows').innerHTML = Cows;  //updates the number of cookies for the user
     };
-    var nextCost = Math.floor(250 * Math.pow(1.1,portal));       //works out the cost of the next cursor
+    var nextCost = Math.floor(500 * Math.pow(1.1,portal));       //works out the cost of the next cursor
     document.getElementById('portalCost').innerHTML = nextCost;  //updates the cursor cost for the user
 };
 
 
+var Factory = 0;
+
+function buyFactory(){
+    var FactoryCost = Math.floor(1000 * Math.pow(1.1,Factory));     //works out the cost of this cursor
+    if(Cows >= FactoryCost){                                   //checks that the player can afford the cursor
+        Factory = Factory + 1;                                   //increases number of farms
+    	Factory = Factory - FactoryCost;                          //removes the cookies spent
+        document.getElementById('Factory').innerHTML = Factory;  //updates the number of cursors for the user
+        document.getElementById('Cows').innerHTML = Cows;  //updates the number of cookies for the user
+    };
+    var nextCost = Math.floor(1000 * Math.pow(1.1,portal));       //works out the cost of the next cursor
+    document.getElementById('portalCost').innerHTML = nextCost;  //updates the cursor cost for the user
+};
 
 
 function save(){
@@ -84,7 +98,8 @@ function save(){
         cursors: cursors,
         farms: farms,
         mines: mines,
-        portal: portal
+        portal: portal,
+        Factory: Factory
     }
     localStorage.setItem("saveBeta",JSON.stringify(save));
 }
@@ -96,6 +111,7 @@ window.setInterval(function(){
     CowClick(farms);
     CowClick(mines);
     CowClick(portal);
+    CowClick(Factory);
 
 }, 1000);
 
