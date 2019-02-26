@@ -83,7 +83,7 @@ function buyFactory(){
     var FactoryCost = Math.floor(1000 * Math.pow(1.1,Factory));     //works out the cost of this cursor
     if(Cows >= FactoryCost){                                   //checks that the player can afford the cursor
         Factory = Factory + 1;                                   //increases number of farms
-    	Factory = Factory - FactoryCost;                          //removes the cookies spent
+    	Cows = Cows - FactoryCost;                          //removes the cookies spent
         document.getElementById('Factory').innerHTML = Factory;  //updates the number of cursors for the user
         document.getElementById('Cows').innerHTML = Cows;  //updates the number of cookies for the user
     };
