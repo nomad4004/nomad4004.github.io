@@ -10,7 +10,7 @@ function load(){
     if (typeof savegame.farms !== "undefined") farms = savegame.farms, document.getElementById('farms').innerHTML = farms;
     if (typeof savegame.mines !== "undefined") mines = savegame.mines, document.getElementById('mines').innerHTML = mines;
     if (typeof savegame.portal !== "undefined") portal = savegame.portal, document.getElementById('portals').innerHTML = portal;
-    if (typeof savegame.Factory !== "undefined") Factory = savegame.Factory, document.getElementById('Factory').innerHTML = Factory;
+    if (typeof savegame.Factory !== "undefined") factory = savegame.Factory, document.getElementById('factory').innerHTML = factory;
 }
 
 var Cows = 0;
@@ -99,7 +99,7 @@ function save(){
         farms: farms,
         mines: mines,
         portal: portal,
-        Factory: Factory
+        Factory: factory
     }
     localStorage.setItem("saveBeta",JSON.stringify(save));
 }
