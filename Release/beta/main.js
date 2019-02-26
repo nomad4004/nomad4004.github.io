@@ -88,7 +88,7 @@ function buyFactory(){
         document.getElementById('Cows').innerHTML = Cows;  //updates the number of cookies for the user
     };
     var nextCost = Math.floor(1000 * Math.pow(1.1,portal));       //works out the cost of the next cursor
-    document.getElementById('portalCost').innerHTML = nextCost;  //updates the cursor cost for the user
+    document.getElementById('FactoryCost').innerHTML = nextCost;  //updates the cursor cost for the user
 };
 
 
