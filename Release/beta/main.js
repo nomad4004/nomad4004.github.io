@@ -80,14 +80,14 @@ function buyportal(){
 var factory = 0;
 
 function buyfactory(){
-    var factoryCost = Math.floor(500 * Math.pow(1.1,factory));     //works out the cost of this cursor
+    var factoryCost = Math.floor(1000 * Math.pow(1.1,factory));     //works out the cost of this cursor
     if(Cows >= factoryCost){                                   //checks that the player can afford the cursor
         factory = factory + 1;                                   //increases number of farms
     	Cows = Cows - factoryCost;                          //removes the cookies spent
         document.getElementById('factory').innerHTML = factory;  //updates the number of cursors for the user
         document.getElementById('Cows').innerHTML = Cows;  //updates the number of cookies for the user
     };
-    var nextCost = Math.floor(500 * Math.pow(1.1,factory));       //works out the cost of the next cursor
+    var nextCost = Math.floor(1000 * Math.pow(1.1,factory));       //works out the cost of the next cursor
     document.getElementById('factoryCost').innerHTML = nextCost;  //updates the cursor cost for the user
 };
 
