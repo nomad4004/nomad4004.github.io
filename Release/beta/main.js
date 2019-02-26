@@ -111,7 +111,7 @@ window.setInterval(function(){
     CowClick(farms);
     CowClick(mines);
     CowClick(portal);
-    CowClick(Factory);
+    CowClick(factory);
 
 }, 1000);
 
