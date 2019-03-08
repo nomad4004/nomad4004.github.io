@@ -14,7 +14,7 @@ function load(){
 }
 
 function DelSave(){
-localStorage.removeItem(saveBeta); return
+localStorage.removeItem("saveBeta");
 }
 
 var Cows = 0;
