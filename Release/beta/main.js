@@ -13,6 +13,10 @@ function load(){
     if (typeof savegame.Factory !== "undefined") factory = savegame.Factory, document.getElementById('factory').innerHTML = factory;
 }
 
+function DelSave(){
+localStorage.removeItem(saveBeta); return
+}
+
 var Cows = 0;
 
 function CowClick(number){
