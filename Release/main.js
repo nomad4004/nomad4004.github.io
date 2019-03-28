@@ -10,6 +10,7 @@ function load(){
     if (typeof savegame.farms !== "undefined") farms = savegame.farms, document.getElementById('farms').innerHTML = farms;
     if (typeof savegame.mines !== "undefined") mines = savegame.mines, document.getElementById('mines').innerHTML = mines;
     if (typeof savegame.portal !== "undefined") portal = savegame.portal, document.getElementById('portals').innerHTML = portal;
+    if (typeof savegame.worlds !== "undefined") Worlds = savegame.worlds, document.getElementById('worlds').innerHTML = Worlds;
 }
 
 var cookies = 0;
@@ -97,7 +98,8 @@ function save(){
         cursors: cursors,
         farms: farms,
         mines: mines,
-        portal: portal
+        portal: portal,
+        worlds: Worlds
     }
     localStorage.setItem("save",JSON.stringify(save));
 }
@@ -108,6 +110,7 @@ window.setInterval(function(){
     cookieClick(farms);
     cookieClick(mines);
     cookieClick(portal);
+    cookieClick(Worlds);
 
 }, 1000);
 
