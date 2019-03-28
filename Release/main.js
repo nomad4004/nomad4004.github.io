@@ -75,6 +75,22 @@ function buyportal(){
     document.getElementById('portalCost').innerHTML = nextCost;  //updates the cursor cost for the user
 };
 
+
+var Worlds = 0;
+
+function buyworld(){
+    var worldCost = Math.floor(922 * Math.pow(1.1,Worlds));     //works out the cost of this cursor
+    if(cookies >= worldCost){                                   //checks that the player can afford the cursor
+        Worlds = Worlds + 1;                                   //increases number of farms
+    	cookies = cookies - worldCost;                          //removes the cookies spent
+        document.getElementById('Worlds').innerHTML = Worlds;  //updates the number of cursors for the user
+        document.getElementById('cookies').innerHTML = cookies;  //updates the number of cookies for the user
+    };
+    var nextCost = Math.floor(922 * Math.pow(1.1,Worlds));       //works out the cost of the next cursor
+    document.getElementById('worldCost').innerHTML = nextCost;  //updates the cursor cost for the user
+};
+
+
 function save(){
     var save = {
         cookies: cookies,
