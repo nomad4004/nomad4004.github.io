@@ -10,7 +10,7 @@ function load(){
     if (typeof savegame.farms !== "undefined") farms = savegame.farms, document.getElementById('farms').innerHTML = farms;
     if (typeof savegame.mines !== "undefined") mines = savegame.mines, document.getElementById('mines').innerHTML = mines;
     if (typeof savegame.portal !== "undefined") portal = savegame.portal, document.getElementById('portals').innerHTML = portal;
-    if (typeof savegame.worlds !== "undefined") Worlds = savegame.worlds, document.getElementById('worlds').innerHTML = Worlds;
+    if (typeof savegame.Worlds !== "undefined") Worlds = savegame.Worlds, document.getElementById('Worlds').innerHTML = Worlds;
 }
 
 var cookies = 0;
