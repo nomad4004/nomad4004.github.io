@@ -10,7 +10,7 @@ function load(){
     if (typeof savegame.farms !== "undefined") farms = savegame.farms, document.getElementById('farms').innerHTML = farms;
     if (typeof savegame.mines !== "undefined") mines = savegame.mines, document.getElementById('mines').innerHTML = mines;
     if (typeof savegame.portal !== "undefined") portal = savegame.portal, document.getElementById('portals').innerHTML = portal;
-    if (typeof savegame.worlds !== "undefined") worlds = savegame.Worlds, document.getElementById('worlds').innerHTML = worlds;
+    if (typeof savegame.worlds !== "undefined") worlds = savegame.worlds, document.getElementById('worlds').innerHTML = worlds;
 }
 
 var cookies = 0;
@@ -77,7 +77,7 @@ function buyportal(){
 };
 
 
-var Worlds = 0;
+var worlds = 0;
 
 function buyworld(){
     var worldCost = Math.floor(922 * Math.pow(1.1,Worlds));     //works out the cost of this cursor
