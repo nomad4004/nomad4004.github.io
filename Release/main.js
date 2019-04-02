@@ -84,10 +84,10 @@ function buyworld(){
     if(cookies >= worldCost){                                   //checks that the player can afford the cursor
         Worlds = Worlds + 1;                                   //increases number of farms
     	cookies = cookies - worldCost;                          //removes the cookies spent
-        document.getElementById('Worlds').innerHTML = Worlds;  //updates the number of cursors for the user
+        document.getElementById('worlds').innerHTML = Worlds;  //updates the number of cursors for the user
         document.getElementById('cookies').innerHTML = cookies;  //updates the number of cookies for the user
     };
-    var nextCost = Math.floor(922 * Math.pow(1.1,Worlds));       //works out the cost of the next cursor
+    var nextCost = Math.floor(922 * Math.pow(1.1,worlds));       //works out the cost of the next cursor
     document.getElementById('worldCost').innerHTML = nextCost;  //updates the cursor cost for the user
 };
 
