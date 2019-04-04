@@ -80,7 +80,7 @@ function buyportal(){
 var worlds = 0;
 
 function buyworld(){
-    var worldCost = Math.floor(922 * Math.pow(1.1,Worlds));     //works out the cost of this cursor
+    var worldCost = Math.floor(922 * Math.pow(1.1,worlds));     //works out the cost of this cursor
     if(cookies >= worldCost){                                   //checks that the player can afford the cursor
         Worlds = Worlds + 1;                                   //increases number of farms
     	cookies = cookies - worldCost;                          //removes the cookies spent
