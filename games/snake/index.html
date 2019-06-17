@@ -29,8 +29,8 @@ var grid = 16;
 var count = 0;
   
 var snake = {
-  x: 1,
-  y: 1,
+  x: 100,
+  y: 100,
   
   // snake velocity. moves one grid length every frame in either the x or y direction
   dx: grid,
@@ -40,7 +40,7 @@ var snake = {
   cells: [],
   
   // length of the snake. grows when eating an apple
-  maxCells: 20000
+  maxCells: 2
 };
 var apple = {
   x: 320,
