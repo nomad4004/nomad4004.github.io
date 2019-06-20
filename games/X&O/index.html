@@ -1,0 +1,382 @@
+<html>
+<head>
+<style>
+ul.list li {
+    color: green;
+}
+
+ul.list li.selected {
+    color: blue;
+}
+
+* { 
+  -moz-box-sizing: border-box; 
+  -webkit-box-sizing: border-box; 
+  box-sizing: border-box; 
+  -webkit-transition: all 0.2s ease;
+  -moz-transition:    all 0.2s ease;
+  -ms-transition:     all 0.2s ease;
+  -o-transition:      all 0.2s ease;  
+}
+
+body {
+    font-family: 'Oswald', sans-serif; 
+}
+
+h1 {
+    font-family: 'Oswald', sans-serif; 
+    font-weight: 300;
+    color: #666;
+    text-align: center;
+}
+
+h1 span {
+    font-weight: 700;
+}
+
+span.nought {
+    color: #0083d3;
+    background: #A4DBF7;
+    padding: 0 8px;
+}
+
+span.cross {
+    color: #ce6200;
+    background: #F9A058;
+    padding: 0 8px;
+}
+
+p.reset {
+    text-align: center;
+    color: #666;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+ul.game {
+    margin: 0;
+    padding: 0;
+    width: 365px;
+    height: 365px;
+    margin: 0 auto;
+}
+
+ul.game li {
+    margin: 0;
+    padding: 0;    
+    list-style: none;
+    background: #eee;
+    display: inline-block;
+    height: 32.5%;
+    width: 32.5%;
+    cursor: pointer;
+}
+
+ul.game li:hover {
+    background: #ccc;
+}
+
+ul.game li.nought {
+    background: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxNy4wLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB3aWR0aD0iMTAwcHgiIGhlaWdodD0iMTAwcHgiIHZpZXdCb3g9IjAgMCAxMDAgMTAwIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCAxMDAgMTAwIiB4bWw6c3BhY2U9InByZXNlcnZlIj4NCjxwYXRoIGZpbGw9IiMwMDgzRDMiIGQ9Ik00OS42NjcsMjJjMTUuNDM5LDAsMjgsMTIuNTYxLDI4LDI4cy0xMi41NjEsMjgtMjgsMjhzLTI4LTEyLjU2MS0yOC0yOFMzNC4yMjcsMjIsNDkuNjY3LDIyIE00OS42NjcsMTINCgljLTIwLjk4NywwLTM4LDE3LjAxMy0zOCwzOHMxNy4wMTMsMzgsMzgsMzhzMzgtMTcuMDEzLDM4LTM4UzcwLjY1MywxMiw0OS42NjcsMTJMNDkuNjY3LDEyeiIvPg0KPC9zdmc+DQo=') #A4DBF7 no-repeat;
+    background-position: center center;
+    background-size: 100% 100%;
+}
+
+ul.game li.cross {
+    background: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxNy4wLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB3aWR0aD0iMTAwcHgiIGhlaWdodD0iMTAwcHgiIHZpZXdCb3g9IjAgMCAxMDAgMTAwIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCAxMDAgMTAwIiB4bWw6c3BhY2U9InByZXNlcnZlIj4NCjxwb2x5Z29uIGZpbGw9Im5vbmUiIHBvaW50cz0iLTgwLjA3MSwyMCAtMTQxLjc2MiwyMCAtMTEwLjkxNyw1MC44NDYgIi8+DQo8cG9seWdvbiBmaWxsPSJub25lIiBwb2ludHM9Ii0xMzkuOTI5LDk0IC04MS45MDQsOTQgLTExMC45MTcsNjQuOTg4ICIvPg0KPHBvbHlnb24gZmlsbD0iI0NFNjIwMCIgcG9pbnRzPSI4Ny4wNzEsMTIgNzUuMTI5LDEyIDQ5LjA4Myw0My43OTYgMjMuMDM3LDEyIDExLjA5NSwxMiA0My4xMTIsNTAuOTQ1IDEyLjY0NCw4OCAyNC41ODUsODggDQoJNDkuMDgzLDU4LjA5NCA3My41ODEsODggODUuNTIzLDg4IDU1LjA1NCw1MC45NDUgIi8+DQo8L3N2Zz4NCg==') #F9A058 no-repeat;
+    background-position: center center;
+    background-size: 100% 100%;
+}
+
+.scale {
+  -webkit-animation: scaleAnim 1s infinite; /* Safari 4+ */
+  -moz-animation:    scaleAnim 1s infinite; /* Fx 5+ */
+  -o-animation:      scaleAnim 1s infinite; /* Opera 12+ */
+  animation:         scaleAnim 1s infinite; /* IE 10+ */
+}
+
+.fade {
+    opacity: 0.3;
+}
+
+@-webkit-keyframes scaleAnim {
+  0%   { 
+    -webkit-transform: scale(1);
+    -moz-transform:    scale(1);
+    -ms-transform:     scale(1);
+    -o-transform:      scale(1);
+    transform:         scale(1);    
+}
+  50% { 
+    -webkit-transform: scale(1.1);
+    -moz-transform:    scale(1.1);
+    -ms-transform:     scale(1.1);
+    -o-transform:      scale(1.1);
+    transform:         scale(1.1);        
+}
+  100%   { 
+    -webkit-transform: scale(1);
+    -moz-transform:    scale(1);
+    -ms-transform:     scale(1);
+    -o-transform:      scale(1);
+    transform:         scale(1);    
+}
+}
+@-moz-keyframes scaleAnim {
+  0%   { 
+    -webkit-transform: scale(1);
+    -moz-transform:    scale(1);
+    -ms-transform:     scale(1);
+    -o-transform:      scale(1);
+    transform:         scale(1);   
+}
+  50% { 
+    -webkit-transform: scale(1.1);
+    -moz-transform:    scale(1.1);
+    -ms-transform:     scale(1.1);
+    -o-transform:      scale(1.1);
+    transform:         scale(1.1);  
+}
+  100%   { 
+    -webkit-transform: scale(1);
+    -moz-transform:    scale(1);
+    -ms-transform:     scale(1);
+    -o-transform:      scale(1);
+    transform:         scale(1);    
+}
+}
+@-o-keyframes scaleAnim {
+  0%   { 
+    -webkit-transform: scale(1);
+    -moz-transform:    scale(1);
+    -ms-transform:     scale(1);
+    -o-transform:      scale(1);
+    transform:         scale(1);   
+}
+  50% { 
+    -webkit-transform: scale(1.1);
+    -moz-transform:    scale(1.1);
+    -ms-transform:     scale(1.1);
+    -o-transform:      scale(1.1);
+    transform:         scale(1.1);  
+}
+  100%   { 
+    -webkit-transform: scale(1);
+    -moz-transform:    scale(1);
+    -ms-transform:     scale(1);
+    -o-transform:      scale(1);
+    transform:         scale(1);    
+}
+}
+@keyframes scaleAnim {
+  0%   { 
+    -webkit-transform: scale(1);
+    -moz-transform:    scale(1);
+    -ms-transform:     scale(1);
+    -o-transform:      scale(1);
+    transform:         scale(1);   
+}
+  50% { 
+    -webkit-transform: scale(1.1);
+    -moz-transform:    scale(1.1);
+    -ms-transform:     scale(1.1);
+    -o-transform:      scale(1.1);
+    transform:         scale(1.1);  
+}
+  100%   { 
+    -webkit-transform: scale(1);
+    -moz-transform:    scale(1);
+    -ms-transform:     scale(1);
+    -o-transform:      scale(1);
+    transform:         scale(1);    
+}
+}
+
+/* Smartphones (portrait) ----------- */
+@media only screen 
+and (max-width : 450px) {
+
+ul.game {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 300px;
+    margin: 0 auto;
+}
+
+
+
+}
+
+</style>
+</head>
+<body>
+        <h1><span class="nought">NOUGHTS</span> & <span class="cross">CROSSES</span></h1>
+        <ul class="game">
+            <li class="blank" id="a"></li>
+            <li class="blank" id="b"></li>
+            <li class="blank" id="c"></li>
+            <li class="blank" id="d"></li>
+            <li class="blank" id="e"></li>
+            <li class="blank" id="f"></li>
+            <li class="blank" id="g"></li>
+            <li class="blank" id="h"></li>
+            <li class="blank" id="i"></li>
+        </ul>
+<script>
+// Define all the elements
+var game = "ul.game",
+gameSquare = "ul.game li.blank",
+nought = "ul.game li.nought",
+cross = "ul.game li.cross";
+
+// Define array for the noughts and crosses
+var gameResult = [nought, cross];
+
+// Grab each element square ID and push it to an array
+var squareIDs = [];
+
+// Count clicks so that every second click resets the X value
+var x = 0;
+function resetClick() {
+	x = 0;
+	gameSquare.value = x;
+}
+
+function count() {
+	if(x<1)
+	{
+		x += 1;
+	}
+	else 
+	{
+		x = 0;
+	}
+}
+
+$( "p.reset" ).click(function() {
+         location.reload(true);
+});
+
+// 1 = NOUGHT, 0 = CROSS
+
+// On clicking a square count the clicks and change the class, this will work only once per square
+$(gameSquare).bind("click", function(){
+
+	count();
+	
+	if (x == 1) {
+
+		$(this).addClass("nought");
+		$(this).removeClass("blank");
+
+
+	
+	} else if (x == 0) {
+		
+		$(this).addClass("cross");
+		$(this).removeClass("blank");		
+		resetClick(); 
+
+	 
+	}
+
+	squareIDs.push(x + " " + $(this).attr("id"));
+
+	console.log(squareIDs);	
+
+	// Set up the conditions for a "win", most likely there is a WAYYY better way to do this, which im learning to do.
+	var nought_win = 
+	   $.inArray("1 a", squareIDs) > -1 
+	&& $.inArray("1 b", squareIDs) > -1 
+	&& $.inArray("1 c", squareIDs) > -1
+	|| $.inArray("1 a", squareIDs) > -1
+	&& $.inArray("1 e", squareIDs) > -1
+	&& $.inArray("1 i", squareIDs) > -1
+	|| $.inArray("1 b", squareIDs) > -1
+	&& $.inArray("1 e", squareIDs) > -1
+	&& $.inArray("1 h", squareIDs) > -1
+	|| $.inArray("1 c", squareIDs) > -1
+	&& $.inArray("1 e", squareIDs) > -1
+	&& $.inArray("1 g", squareIDs) > -1
+	|| $.inArray("1 c", squareIDs) > -1
+	&& $.inArray("1 f", squareIDs) > -1
+	&& $.inArray("1 i", squareIDs) > -1
+	|| $.inArray("1 d", squareIDs) > -1
+	&& $.inArray("1 e", squareIDs) > -1
+	&& $.inArray("1 f", squareIDs) > -1
+	|| $.inArray("1 g", squareIDs) > -1
+	&& $.inArray("1 h", squareIDs) > -1
+	&& $.inArray("1 i", squareIDs) > -1
+	|| $.inArray("1 g", squareIDs) > -1
+	&& $.inArray("1 a", squareIDs) > -1
+	&& $.inArray("1 d", squareIDs) > -1;	
+
+	if(nought_win) {
+		console.log("NOUGHT WINS!");
+
+		$("h1").replaceWith("<h1><span class='nought'>NOUGHT WINS!</span></h1>");
+
+		$(nought).addClass("scale");
+		$(cross).addClass("fade");
+    
+     $(gameSquare).unbind();	   
+    
+		return;
+	}; 	
+
+	// Set up the conditions for a "win"
+	var cross_win = 
+	   $.inArray("0 a", squareIDs) > -1 
+	&& $.inArray("0 b", squareIDs) > -1 
+	&& $.inArray("0 c", squareIDs) > -1
+	|| $.inArray("0 a", squareIDs) > -1
+	&& $.inArray("0 e", squareIDs) > -1
+	&& $.inArray("0 i", squareIDs) > -1
+	|| $.inArray("0 b", squareIDs) > -1
+	&& $.inArray("0 e", squareIDs) > -1
+	&& $.inArray("0 h", squareIDs) > -1
+	|| $.inArray("0 c", squareIDs) > -1
+	&& $.inArray("0 e", squareIDs) > -1
+	&& $.inArray("0 g", squareIDs) > -1
+	|| $.inArray("0 c", squareIDs) > -1
+	&& $.inArray("0 f", squareIDs) > -1
+	&& $.inArray("0 i", squareIDs) > -1
+	|| $.inArray("0 d", squareIDs) > -1
+	&& $.inArray("0 e", squareIDs) > -1
+	&& $.inArray("0 f", squareIDs) > -1
+	|| $.inArray("0 g", squareIDs) > -1
+	&& $.inArray("0 h", squareIDs) > -1
+	&& $.inArray("0 i", squareIDs) > -1
+	|| $.inArray("0 g", squareIDs) > -1
+	&& $.inArray("0 a", squareIDs) > -1
+	&& $.inArray("0 d", squareIDs) > -1;		
+
+	if(cross_win) {
+		console.log("CROSS WINS!");
+
+		$("h1").replaceWith("<h1><span class='cross'>CROSS WINS!</span></h1>");
+
+		$(cross).addClass("scale");
+		$(nought).addClass("fade");
+    
+		$(gameSquare).unbind();	    
+
+		return;
+	}; 	
+
+
+	// Check if there are any blank tiles left, if there is keep going, if there ISN'T then game over :)
+	if ($("ul.game li.blank").length) {
+
+	} else {
+		console.log("TIE!");
+	};
+  
+	// Unbind the button so it only fires once
+   $(this).unbind();
+  
+});
+</script>
+</body>
+</html>
