@@ -28,7 +28,7 @@ function count() {
 	}
 }
 
-$( "p.reset" ).click(function() {
+( "p.reset" ).click(function() {
          location.reload(true);
 });
 
@@ -148,6 +148,6 @@ $(gameSquare).bind("click", function(){
 	};
   
 	// Unbind the button so it only fires once
-   $(this).unbind();
+   (this).unbind();
   
 });
